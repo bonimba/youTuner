@@ -1,0 +1,32 @@
+<dom-module id="highlights-data">
+
+<template>
+  <iron-ajax
+    auto
+    url="{{url}}"
+    params='{{parameters}}'
+    handle-as="json"
+    last-response="{{highlights}}"
+    debounce-duration="300"></iron-ajax>
+
+</template>
+<script>
+  Polymer({
+    is: 'highlights-data',
+    properties: {
+      url : {
+        type: String,
+        value: "https://www.googleapis.com/youtube/v3/channels"
+      },
+      parameters : {
+        type: String,
+        value: "part: contentDetails, forUsername: bonimba33733"
+      },
+      highlights: {
+        type: Object,
+        value: {}
+      }
+    }
+  });
+</script>
+</dom-module>

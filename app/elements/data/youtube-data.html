@@ -1,0 +1,47 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="youtube-data">
+
+  <template>
+    <iron-ajax
+      auto
+      url="[[url]]"
+      params='{{parameters}}'
+      handle-as="json"
+      last-response="{{response}}"
+      debounce-duration="300"></iron-ajax>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'youtube-data',
+      properties: {
+        base : {
+          type: String,
+          value: "https://www.googleapis.com/youtube/v3"
+        },
+        last: {
+          type: String,
+          value: 'channels'
+        },
+        url: {
+          type: String,
+          computed: 'computeUrl(base, last)'
+        },
+        parameters : {
+          type: String,
+          value: "part: contentDetails, forUsername: bonimba33733"
+        },
+        response: {
+          type: Object,
+          value: {}
+        }
+      },
+
+      computeUrl: function(base, last){
+        return [base, last].join("/");
+      }
+
+    });
+  </script>
+</dom-module>

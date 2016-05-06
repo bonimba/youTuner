@@ -1,0 +1,31 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../youtube-data.html">
+
+
+<dom-module id="channels-data">
+
+  <template>
+    <youtube-data
+      url="subscriptions"
+      params="{part: snippet, mine: true, maxResult: 50}"
+      last-response="{{channels}}"></youtube-data>
+
+    <template is="dom-repeat" items="[[channels.items]]">
+
+    </template>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'channels-data',
+      properties: {
+        channels: {
+          type: Object,
+          value: {},
+          reflectToAttribute: true
+        }
+      }
+
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,164 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../../bower_components/google-youtube/google-youtube.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+
+<dom-module id="video-card">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+      margin: 2%;
+      width: 96%;
+      @apply(--layout-vertical);
+    }
+
+    #card-header{
+      @apply(--layout-horizontal);
+      padding: 1%;
+    }
+    #channel-icon{
+      @apply(--layout-start);
+      padding-right: 1%;
+    }
+    #channel-name{
+      @apply(--layout-flex);
+    }
+    .card-content{
+      @apply(--layout-flex);
+    }
+    #video-content{
+      @apply(--layout-horizontal);
+      @apply(--layout-flex);
+    }
+    google-youtube{
+      @apply(--layout-flex);
+    }
+    ul{
+      list-style: none;
+    }
+    ul li{
+      @apply(--layout-horizontal);
+    }
+    ul li label{
+      @apply(--layout-flex);
+      @apply(--layout-start);
+      padding-right:10%;
+    }
+    ul li iron-icon{
+      @apply(--layout-end);
+    }
+  </style>
+
+  <template>
+    <paper-card elevation="2">
+      <iron-flex-layout>
+        <div id="card-header">
+          <div id="channel-icon">
+            <iron-icon icon='icons:face'></iron-icon>
+          </div>
+          <div id="channel-name">
+            <label>[[channelName]]</label>
+          </div>
+          <div id="menu-icon">
+            <a><iron-icon icon="icons:more-vert"></iron-icon></a>
+          </div>
+        </div>
+        <div class="card-content">
+          <div id="video-content">
+            <google-youtube
+              video-id=[[videoId]]
+              width="80%"
+              rel="0"
+              start="0"
+              autoplay="0">
+            </google-youtube>
+            <!-- <ul>
+              <li>
+                <label>[[videoTime]]</label>
+                <iron-icon icon="icons:query-builder"></iron-icon>
+              </li>
+              <li>
+                <label>[[videoViews]]</label>
+                <iron-icon icon="icons:visibility"></iron-icon>
+              </li>
+              <li>
+                <label>[[videoLikes]]</label>
+                <iron-icon icon="icons:thumb-up"></iron-icon>
+              </li>
+              <li>
+                <label>[[videoUnlikes]]</label>
+                <iron-icon icon="icons:thumb-down"></iron-icon>
+              </li>
+              <li>
+                <label>[[videoShares]]</label>
+                <iron-icon icon="icons:more-vert"></iron-icon>
+              </li>
+            </ul> -->
+          </div>
+          <div class="self-end">
+            <label>[[videoTitle]]</label>
+            <span class="flex"></span>
+            <span>
+                <label>[[videoTime]]</label>
+                <iron-icon icon="icons:query-builder"></iron-icon>
+            </span>
+
+          </div>
+        </div>
+      </iron-flex-layout>
+    </paper-card>
+  </template>
+
+  <script>
+      Polymer({
+        is: 'video-card',
+        properties: {
+
+          videoId: {
+            type: String,
+            value:"TXv2jIfF7es"
+          },
+          videoTitle: {
+            type: String,
+            value: "Title"
+          },
+          videoViews: {
+            type: String,
+            value: "Views"
+          },
+          videoLikes: {
+            type: String,
+            value: "Views"
+          },
+          videoTime: {
+            type: String,
+            value: "Time"
+          },
+          videoUnlikes: {
+            type: String,
+            value: "Unlikes"
+          },
+          videoShares: {
+            type: String,
+            value: "Shares"
+          },
+          channelIcon: {
+          },
+          channelName: {
+            type: String,
+            value: "Channel Name"
+          }
+        },
+        ready: function() {
+
+        }
+      });
+
+  </script>
+
+</dom-module>
