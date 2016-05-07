@@ -21,6 +21,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   //set app default selection
   app.selected = 0;
 
+  //app.youtubeKey = "AIzaSyDgsvYtLz-BuMYSLt_Zzhde5W9Kl1BnbLA";
+
   if (window.location.port === '') {  // if production
     // Uncomment app.baseURL below and
     // set app.baseURL to '/your-pathname/' if running from folder in production

@@ -3,47 +3,38 @@
 <link rel="import" href="../cards/video-card.html">
 <link rel="import" href="../data/youtube-data.html">
 
-
 <dom-module id="video-list">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
 
-  <style>
-    :host {
-      display: block;
-      box-sizing: border-box;
-    }
+    </style>
 
-  </style>
-
-<template>
-  <youtube-data
-    last="api"
-    parameters=""
-    response="[[data]]"
-  ></youtube-data>
-
-
-  <iron-list items="[[data]]" as="item">
     <template is="dom-bind">
-      <div>
-        <template is="dom-repeat" items="[[item.columns]]">
-          <video-card
-            video-id=[[item.]]
-            videoTitle=[[item.]]
-            videoViews=[[item.]]
-            videoLikes=[[item.]]
-            videoTime=[[item.]]
-            videoUnlikes=[[item.]]
-            videoShares=[[item.]]
-            channelIcon=[[item.]]
-            channelName=[[item.]]
-          >
+      <youtube-data
+        last="api"
+        parameters=""
+        response="{{data}}"
+      ></youtube-data>
 
-          </video-card>
+
+      <iron-list items="{{data.items}}" as="item">
+        <template is="dom-bind">
+          <template is="dom-repeat" items="{{item}}">
+            <video-card
+              video-id=[[item.contentDetails.playlistItem.resourceId.videoId]]
+              videoTitle=[[item.title]]
+              channelName=[[item.channelTitle]]
+            ></video-card>
+          </template>
         </template>
-      </div>
+      </iron-list>
     </template>
-  </iron-list>
-</template>
+
+  </template>
 
 
   <script>
@@ -54,6 +45,10 @@
           api: {
             type: String,
             value: 'channels'
+          },
+          params: {
+            type: Object,
+            value: {}
           }
         },
 

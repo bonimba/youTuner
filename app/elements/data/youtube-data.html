@@ -1,4 +1,6 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
 
 <dom-module id="youtube-data">
 
@@ -17,29 +19,44 @@
       is: 'youtube-data',
       properties: {
         base : {
-          type: String,
+          type: string,
           value: "https://www.googleapis.com/youtube/v3"
         },
         last: {
-          type: String,
+          type: string,
           value: 'channels'
         },
         url: {
-          type: String,
-          computed: 'computeUrl(base, last)'
+          type: string,
+          computed: 'computeUrl'
         },
-        parameters : {
-          type: String,
-          value: "part: contentDetails, forUsername: bonimba33733"
+        params : {
+          type: string,
+          value: '"part: contentDetails", "forUsername": "bonimba33733"'
+        },
+
+        youtubeKey: {
+          type: string,
+          value: '"key": "AIzaSyDgsvYtLz-BuMYSLt_Zzhde5W9Kl1BnbLA"'
+        },
+
+        parameters: {
+          type: string,
+          computed: 'computeParameters'
         },
         response: {
           type: Object,
-          value: {}
+          value: {},
+          notify: true
         }
       },
 
       computeUrl: function(base, last){
         return [base, last].join("/");
+      },
+
+      computeParameters: function(params, youtubeKey){
+        return Object.assign({}, params, youtubeKey);
       }
 
     });
