@@ -1,0 +1,54 @@
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/google-youtube/google-youtube.html">
+<link rel="import" href="cards/video-card.html">
+
+
+
+<dom-module id="basic-list">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+
+    </style>
+
+    <template is="dom-bind">
+      <iron-ajax
+        auto
+        url="https://www.googleapis.com/youtube/v3/activities"
+        params='{"part": "snippet,contentDetails", "channelId": "UCnUYZLuoy1rq1aVMwx4aTzw", "maxResults": "50",  "key": "AIzaSyDgsvYtLz-BuMYSLt_Zzhde5W9Kl1BnbLA"}'
+        handle-as="json"
+        last-response="{{data}}"
+        debounce-duration="300"></iron-ajax>
+
+      <iron-list items="{{data.items}}" as="item">
+        <template>
+          <video-card
+            video-id="[[item.contentDetails.playlistItem.resourceId.videoId]]"
+            video-title="[[item.snippet.title]]"
+            channel-name="[[item.snippet.channelTitle]]"
+            channel-icon="[[item.snippet.thumbnails.default.url]]"
+          >
+
+          </video-card>
+        </template>
+
+       </iron-list>
+    </template>
+
+  </template>
+
+
+  <script>
+
+    Polymer({
+      is: 'basic-list',
+      properties:{}
+    });
+
+  </script>
+
+</dom-module>
